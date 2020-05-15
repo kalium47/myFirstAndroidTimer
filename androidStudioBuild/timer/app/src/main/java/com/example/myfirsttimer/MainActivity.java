@@ -1,14 +1,17 @@
 package com.example.myfirsttimer;
 
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private long mStartTimeInMillis;
 
+    private ImageView mPicHim;
     private EditText mEditTextInput;
     private Button mButtonSet;
     private TextView mTextViewCountDown;
@@ -31,10 +35,14 @@ public class MainActivity extends AppCompatActivity {
     private long mTimeLeftInMillis;
     private long mEndTime;
 
+    MediaPlayer player;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPicHim = findViewById(R.id.pic_him);
 
         mEditTextInput = findViewById(R.id.edit_text_input);
         mButtonSet = findViewById(R.id.button_set);
@@ -85,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
     private void setTime(long milliseconds){
         mStartTimeInMillis = milliseconds;
         resetTimer();
+        closeKeyboard();
     }
 
     private void startTimer(){
@@ -152,8 +161,19 @@ public class MainActivity extends AppCompatActivity {
 
             if(mTimeLeftInMillis < 1000){
                 mButtonStartPause.setVisibility(View.INVISIBLE);
+                mPicHim.setVisibility(View.VISIBLE);
+                if(player == null){
+                    player = MediaPlayer.create(this, R.raw.wow);
+                }
+                player.start();
             }else{
                 mButtonStartPause.setVisibility(View.VISIBLE);
+                mPicHim.setVisibility(View.INVISIBLE);
+                if(player != null){
+                    player.release();
+                    player = null;
+                    Toast.makeText(this,"WoW released", Toast.LENGTH_SHORT).show();
+                }
             }
 
             if(mTimeLeftInMillis < mStartTimeInMillis){
@@ -164,6 +184,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void closeKeyboard(){
+        View view = this.getCurrentFocus();
+        if(view != null){
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 
     @Override
     protected void onStop() {

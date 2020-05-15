@@ -12,11 +12,34 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="301dp"
+        android:layout_marginTop="350dp"
+        android:fontFamily="sans-serif-black"
         android:text="00:00"
         android:textColor="@android:color/holo_purple"
-        android:fontFamily="sans-serif-black"
         android:textSize="60sp" />
+
+    <EditText
+        android:id="@+id/edit_text_input"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="201dp"
+        android:layout_marginTop="436dp"
+        android:hint="Minutes"
+        android:inputType="number"
+        android:maxLength="4" />
+
+    <Button
+        android:id="@+id/button_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="513dp"
+        android:fontFamily="sans-serif-black"
+        android:text="SET"
+        android:textColor="@android:color/holo_green_dark" />
 
     <Button
         android:id="@+id/button_start_pause"
@@ -24,22 +47,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="279dp"
-        android:text="Start"
+        android:layout_marginBottom="447dp"
         android:fontFamily="sans-serif-black"
-        android:textColor="@android:color/holo_green_dark"/>
+        android:text="Start"
+        android:textColor="@android:color/holo_green_dark" />
 
     <Button
         android:id="@+id/button_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="215dp"
-        android:text="Reset"
-        android:visibility="invisible"
-        tools:visibility="visible"
+        android:layout_marginEnd="226dp"
+        android:layout_marginBottom="382dp"
         android:fontFamily="sans-serif-black"
-        android:textColor="@android:color/holo_green_dark"/>
+        android:text="Reset"
+        android:textColor="@android:color/holo_green_dark"
+        android:visibility="invisible"
+        tools:visibility="visible" />
 
 </RelativeLayout>
